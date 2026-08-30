@@ -8,30 +8,27 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: cursos
+        - id: ms-cursos
           uri: lb://MS-CURSOS
           predicates:
             - Path=/api/cursos/**
+          filters:
+            - StripPrefix=2
 
-        - id: alumnos
+        - id: ms-alumnos
           uri: lb://MS-ALUMNOS
           predicates:
             - Path=/api/alumnos/**
+          filters:
+            - StripPrefix=2
 
-        - id: administracion
+        - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
           predicates:
             - Path=/api/administracion/**
+          filters:
+            - StripPrefix=2
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-    urls[0]:
-      name: Alumnos
-      url: /api/alumnos/v3/api-docs
-    urls[1]:
-      name: Cursos
-      url: /api/cursos/v3/api-docs
-    urls[2]:
-      name: Administracion
-      url: /api/administracion/v3/api-docs
