@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: cursos
+          uri: lb://MS-CURSOS
+          predicates:
+            - Path=/api/cursos/**
+
+        - id: alumnos
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/alumnos/**
+
+        - id: administracion
+          uri: lb://MS-ADMINISTRACION
+          predicates:
+            - Path=/api/administracion/**
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: 'Alumnos'
+        url: '/api/alumnos/v3/api-docs'
+      - name: 'Cursos'
+        url: '/api/cursos/v3/api-docs'
+      - name: 'Administracion'
+        url: '/api/administracion/v3/api-docs'
