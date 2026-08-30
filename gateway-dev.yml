@@ -26,11 +26,12 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-    enabled: true
-    urls:
-      - name: 'Alumnos'
-        url: '/api/alumnos/v3/api-docs'
-      - name: 'Cursos'
-        url: '/api/cursos/v3/api-docs'
-      - name: 'Administracion'
-        url: '/api/administracion/v3/api-docs'
+    urls[0]:
+      name: Alumnos
+      url: /api/alumnos/v3/api-docs
+    urls[1]:
+      name: Cursos
+      url: /api/cursos/v3/api-docs
+    urls[2]:
+      name: Administracion
+      url: /api/administracion/v3/api-docs
