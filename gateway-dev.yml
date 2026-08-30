@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 spring:
   cloud:
     gateway:
@@ -14,21 +13,32 @@ spring:
             - Path=/api/cursos/**
           filters:
             - StripPrefix=2
-
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
           predicates:
             - Path=/api/alumnos/**
           filters:
             - StripPrefix=2
-
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
           predicates:
             - Path=/api/administracion/**
           filters:
             - StripPrefix=2
-
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+    enabled: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+    use-root-path: true
+    urls:
+      - name: ms-alumnos
+        url: /api/alumnos/v3/api-docs
+      - name: ms-cursos
+        url: /api/cursos/v3/api-docs
+      - name: ms-administracion
+        url: /api/administracion/v3/api-docs
+  enable-native-support: true
+  api-docs:
+    enabled: true
