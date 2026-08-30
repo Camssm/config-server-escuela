@@ -31,7 +31,6 @@ springdoc:
     enabled: true
     operationsSorter: alpha
     tagsSorter: alpha
-    use-root-path: true
     urls:
       - name: ms-alumnos
         url: /api/alumnos/v3/api-docs
