@@ -1,6 +1,9 @@
 server:
   port: 8080
+
 spring:
+  application:
+    name: api-gateway
   cloud:
     gateway:
       discovery:
@@ -12,19 +15,20 @@ spring:
           predicates:
             - Path=/api/cursos/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
           predicates:
             - Path=/api/alumnos/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
           predicates:
             - Path=/api/administracion/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
