@@ -15,19 +15,19 @@ spring:
           predicates:
             - Path=/api/cursos/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
           predicates:
             - Path=/api/alumnos/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
           predicates:
             - Path=/api/administracion/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
 
 springdoc:
   swagger-ui:
