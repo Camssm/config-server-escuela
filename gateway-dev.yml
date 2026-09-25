@@ -10,18 +10,25 @@ spring:
         locator:
           enabled: true
       routes:
+        - id: ms-security
+          uri: lb://MS-SECURITY
+          predicates:
+            - Path=/auth/**
+
         - id: ms-cursos
           uri: lb://MS-CURSOS
           predicates:
             - Path=/api/cursos/**
           filters:
             - StripPrefix=2
+
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
           predicates:
             - Path=/api/alumnos/**
           filters:
             - StripPrefix=2
+
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
           predicates:
@@ -36,6 +43,8 @@ springdoc:
     operationsSorter: alpha
     tagsSorter: alpha
     urls:
+      - name: ms-security
+        url: /auth/v3/api-docs
       - name: ms-alumnos
         url: /api/alumnos/v3/api-docs
       - name: ms-cursos
