@@ -10,15 +10,15 @@ spring:
         locator:
           enabled: true
       routes:
-        # RUTA SECURITY (Pública, le quitamos /auth para que llegue /v3/api-docs y /login)
+        # RUTA SECURITY (Pública)
         - id: ms-security
-          uri: lb://SECURITY-SERVICE # Asegúrate de que este nombre sea igual al que aparece en Eureka
+          uri: lb://SECURITY-SERVICE
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
 
-        # RUTAS PROTEGIDAS (Les agregamos el AuthenticationFilter)
+        # RUTAS PROTEGIDAS
         - id: ms-cursos
           uri: lb://MS-CURSOS
           predicates:
