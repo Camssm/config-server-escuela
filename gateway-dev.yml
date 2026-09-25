@@ -25,7 +25,6 @@ spring:
             - Path=/api/cursos/**
           filters:
             - StripPrefix=2
-            - AuthenticationFilter
 
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
@@ -33,7 +32,6 @@ spring:
             - Path=/api/alumnos/**
           filters:
             - StripPrefix=2
-            - AuthenticationFilter
 
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
@@ -41,7 +39,6 @@ spring:
             - Path=/api/administracion/**
           filters:
             - StripPrefix=2
-            - AuthenticationFilter
 
 springdoc:
   swagger-ui:
