@@ -10,17 +10,22 @@ spring:
         locator:
           enabled: true
       routes:
+        # RUTA SECURITY (Pública, le quitamos /auth para que llegue /v3/api-docs y /login)
         - id: ms-security
-          uri: lb://MS-SECURITY
+          uri: lb://SECURITY-SERVICE # Asegúrate de que este nombre sea igual al que aparece en Eureka
           predicates:
             - Path=/auth/**
+          filters:
+            - StripPrefix=1
 
+        # RUTAS PROTEGIDAS (Les agregamos el AuthenticationFilter)
         - id: ms-cursos
           uri: lb://MS-CURSOS
           predicates:
             - Path=/api/cursos/**
           filters:
             - StripPrefix=2
+            - AuthenticationFilter
 
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
@@ -28,6 +33,7 @@ spring:
             - Path=/api/alumnos/**
           filters:
             - StripPrefix=2
+            - AuthenticationFilter
 
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
@@ -35,6 +41,7 @@ spring:
             - Path=/api/administracion/**
           filters:
             - StripPrefix=2
+            - AuthenticationFilter
 
 springdoc:
   swagger-ui:
