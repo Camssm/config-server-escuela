@@ -18,6 +18,11 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: "MiClaveSuperSecretaParaFirmarLosTokensJWTDeEscuela12345678901234567890"
 
 springdoc:
   api-docs:
