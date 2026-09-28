@@ -22,7 +22,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          secret-key: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOIiwiZXhwIjoxNzkwNjg2ODU2fQ.3d6j-eOOPZkp8I9tmknboUfGtyZ73Jc_yjNDRFxYMLveF0WxGSPhzGvx3lUOiCPBixn01JjahSYg6_0zmilWdA"
+          secret-key: "MTBmYTYwYjI2YWQ0YzMxMDdjZGJhMGEyMzVmOGJlYzgwYmZhYzY3YzU4Zjc1OGZkN2NlNjMxMzFkOGJjYmI5MTQ2MzJkNTZhYzEyZmUxZmU2OGRkYzFkMDMzNzQxMzYzNGM2ODUyZjlhMTM0YzgyMTRiODNkMjAwYmE3MDc3MjM="
 
 springdoc:
   api-docs:
