@@ -20,6 +20,11 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret-key: "MTBmYTYwYjI2YWQ0YzMxMDdjZGJhMGEyMzVmOGJlYzgwYmZhYzY3YzU4Zjc1OGZkN2NlNjMxMzFkOGJjYmI5MTQ2MzJkNTZhYzEyZmUxZmU2OGRkYzFkMDMzNzQxMzYzNGM2ODUyZjlhMTM0YzgyMTRiODNkMjAwYmE3MDc3MjM="
 
 springdoc:
   api-docs:
