@@ -22,7 +22,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          secret-key: "MiClaveSuperSecretaParaFirmarLosTokensJWTDeEscuela12345678901234567890"
+          secret-key: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOIiwiZXhwIjoxNzkwNjg2ODU2fQ.3d6j-eOOPZkp8I9tmknboUfGtyZ73Jc_yjNDRFxYMLveF0WxGSPhzGvx3lUOiCPBixn01JjahSYg6_0zmilWdA"
 
 springdoc:
   api-docs:
