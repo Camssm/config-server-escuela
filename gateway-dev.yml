@@ -16,6 +16,13 @@ spring:
 
       routes:
 
+        - id: ms-security-docs
+          uri: lb://SECURITY-SERVICE
+          predicates:
+            - Path=/auth/v3/api-docs
+          filters:
+            - RewritePath=/auth/v3/api-docs, /v3/api-docs
+
         - id: ms-security
           uri: lb://SECURITY-SERVICE
           predicates:
@@ -71,8 +78,10 @@ springdoc:
   api-docs:
     enabled: true
 
+
 gateway:
   internal-secret: "ApoloRuben2026"
+
 
 jwt:
   secret: MTBmYTYwYjI2YWQ0YzMxMDdjZGJhMGEyMzVmOGJlYzgwYmZhYzY3YzU4Zjc1OGZkN2NlNjMxMzFkOGJjYmI5MTQ2MzJkNTZhYzEyZmUxZmU2OGRkYzFkMDMzNzQxMzYzNGM2ODUyZjlhMTM0YzgyMTRiODNkMjAwYmE3MDc3MjM=
