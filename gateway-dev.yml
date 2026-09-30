@@ -6,11 +6,12 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      default-filters:
+        - AddRequestHeader=X-Gateway-Secret, ${gateway.internal-secret}
       discovery:
         locator:
           enabled: true
       routes:
-        # RUTA SECURITY (Pública)
         - id: ms-security
           uri: lb://SECURITY-SERVICE
           predicates:
@@ -18,7 +19,6 @@ spring:
           filters:
             - StripPrefix=1
 
-        # RUTAS PROTEGIDAS
         - id: ms-cursos
           uri: lb://MS-CURSOS
           predicates:
@@ -58,3 +58,6 @@ springdoc:
   enable-native-support: true
   api-docs:
     enabled: true
+
+gateway:
+  internal-secret: "MTBmYTYwYjI2YWQ0YzMxMDdjZGJhMGEyMzVmOGJlYzgwYmZhYzY3YzU4Zjc1OGZkN2NlNjMxMzFkOGJjYmI5MTQ2MzJkNTZhYzEyZmUxZmU2OGRkYzFkMDMzNzQxMzYzNGM2ODUyZjlhMTM0YzgyMTRiODNkMjAwYmE3MDc3MjM="
