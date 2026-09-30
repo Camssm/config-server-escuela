@@ -4,27 +4,19 @@ server:
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
-      default-filters:
-        - AddRequestHeader=X-Gateway-Secret, ${gateway.internal-secret}
       discovery:
         locator:
           enabled: true
+
       routes:
+
         - id: ms-security
           uri: lb://SECURITY-SERVICE
           predicates:
             - Path=/auth/**
-          filters:
-            - StripPrefix=1
-
-        - id: ms-cursos
-          uri: lb://MS-CURSOS
-          predicates:
-            - Path=/api/cursos/**
-          filters:
-            - StripPrefix=2
 
         - id: ms-alumnos
           uri: lb://MS-ALUMNOS
@@ -32,6 +24,15 @@ spring:
             - Path=/api/alumnos/**
           filters:
             - StripPrefix=2
+            - AuthenticationFilter
+
+        - id: ms-cursos
+          uri: lb://MS-CURSOS
+          predicates:
+            - Path=/api/cursos/**
+          filters:
+            - StripPrefix=2
+            - AuthenticationFilter
 
         - id: ms-administracion
           uri: lb://MS-ADMINISTRACION
@@ -39,6 +40,8 @@ spring:
             - Path=/api/administracion/**
           filters:
             - StripPrefix=2
+            - AuthenticationFilter
+
 
 springdoc:
   swagger-ui:
@@ -46,18 +49,25 @@ springdoc:
     enabled: true
     operationsSorter: alpha
     tagsSorter: alpha
+
     urls:
       - name: ms-security
         url: /auth/v3/api-docs
+
       - name: ms-alumnos
         url: /api/alumnos/v3/api-docs
+
       - name: ms-cursos
         url: /api/cursos/v3/api-docs
+
       - name: ms-administracion
         url: /api/administracion/v3/api-docs
+
   enable-native-support: true
+
   api-docs:
     enabled: true
+
 
 gateway:
   internal-secret: "ApoloRuben2026"
