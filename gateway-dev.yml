@@ -30,7 +30,7 @@ spring:
       default-filters:
         - AddRequestHeader=X-Gateway-Secret, ${gateway.internal-secret}
 
-      routes:
+            routes:
 
         - id: ms-security-docs
           uri: lb://SECURITY-SERVICE
@@ -38,6 +38,27 @@ spring:
             - Path=/auth/v3/api-docs
           filters:
             - RewritePath=/auth/v3/api-docs, /v3/api-docs
+
+        - id: ms-alumnos-docs
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/alumnos/v3/api-docs
+          filters:
+            - RewritePath=/api/alumnos/v3/api-docs, /v3/api-docs
+
+        - id: ms-cursos-docs
+          uri: lb://MS-CURSOS
+          predicates:
+            - Path=/api/cursos/v3/api-docs
+          filters:
+            - RewritePath=/api/cursos/v3/api-docs, /v3/api-docs
+
+        - id: ms-administracion-docs
+          uri: lb://MS-ADMINISTRACION
+          predicates:
+            - Path=/api/administracion/v3/api-docs
+          filters:
+            - RewritePath=/api/administracion/v3/api-docs, /v3/api-docs
 
         - id: ms-security
           uri: lb://SECURITY-SERVICE
@@ -64,7 +85,6 @@ spring:
             - Path=/api/administracion/**
           filters:
             - AuthenticationFilter
-
 
 springdoc:
   swagger-ui:
