@@ -49,7 +49,6 @@ spring:
           predicates:
             - Path=/api/alumnos/**
           filters:
-            - StripPrefix=2
             - AuthenticationFilter
 
         - id: ms-cursos
@@ -57,7 +56,6 @@ spring:
           predicates:
             - Path=/api/cursos/**
           filters:
-            - StripPrefix=2
             - AuthenticationFilter
 
         - id: ms-administracion
@@ -65,7 +63,6 @@ spring:
           predicates:
             - Path=/api/administracion/**
           filters:
-            - StripPrefix=2
             - AuthenticationFilter
 
 
