@@ -41,3 +41,6 @@ management:
   endpoint:
     health:
       show-details: always
+
+gateway:
+  internal-secret: "ApoloRuben2026"
