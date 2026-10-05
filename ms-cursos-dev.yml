@@ -38,3 +38,9 @@ management:
 
 gateway:
   internal-secret: "ApoloRuben2026"
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
