@@ -23,6 +23,11 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener:
+      simple:
+        retry:
+          enabled: false
+        default-requeue-rejected: false
     
 springdoc:
   api-docs:
