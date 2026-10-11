@@ -48,6 +48,20 @@ spring:
           filters:
             - RewritePath=/api/alumnos/v3/api-docs, /v3/api-docs
 
+        - id: ms-evaluaciones
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/evaluaciones/**
+          filters:
+            - AuthenticationFilter
+
+        - id: ms-notas
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/notas/**
+          filters:
+            - AuthenticationFilter
+
         - id: ms-cursos-docs
           uri: lb://MS-CURSOS
           predicates:
