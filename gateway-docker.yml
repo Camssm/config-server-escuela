@@ -1,0 +1,143 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+
+      discovery:
+        locator:
+          enabled: true
+
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:4200"
+
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+
+            allowedHeaders:
+              - "*"
+
+            allowCredentials: true
+
+      default-filters:
+        - AddRequestHeader=X-Gateway-Secret, ${gateway.internal-secret}
+
+      routes:
+
+        - id: ms-security-docs
+          uri: lb://SECURITY-SERVICE
+          predicates:
+            - Path=/auth/v3/api-docs
+          filters:
+            - RewritePath=/auth/v3/api-docs, /v3/api-docs
+
+        - id: ms-alumnos-docs
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/alumnos/v3/api-docs
+          filters:
+            - RewritePath=/api/alumnos/v3/api-docs, /v3/api-docs
+
+        - id: ms-evaluaciones
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/evaluaciones/**
+          filters:
+            - AuthenticationFilter
+
+        - id: ms-notas
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/notas/**
+          filters:
+            - AuthenticationFilter
+
+        - id: ms-cursos-docs
+          uri: lb://MS-CURSOS
+          predicates:
+            - Path=/api/cursos/v3/api-docs
+          filters:
+            - RewritePath=/api/cursos/v3/api-docs, /v3/api-docs
+
+        - id: ms-administracion-docs
+          uri: lb://MS-ADMINISTRACION
+          predicates:
+            - Path=/api/administracion/v3/api-docs
+          filters:
+            - RewritePath=/api/administracion/v3/api-docs, /v3/api-docs
+
+        - id: ms-security
+          uri: lb://SECURITY-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        - id: ms-alumnos
+          uri: lb://MS-ALUMNOS
+          predicates:
+            - Path=/api/alumnos/**
+          filters:
+            - AuthenticationFilter
+
+        - id: ms-cursos
+          uri: lb://MS-CURSOS
+          predicates:
+            - Path=/api/cursos/**
+          filters:
+            - AuthenticationFilter
+
+        - id: ms-administracion
+          uri: lb://MS-ADMINISTRACION
+          predicates:
+            - Path=/api/administracion/**
+          filters:
+            - AuthenticationFilter
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+
+    urls:
+      - name: ms-security
+        url: /auth/v3/api-docs
+
+      - name: ms-alumnos
+        url: /api/alumnos/v3/api-docs
+
+      - name: ms-cursos
+        url: /api/cursos/v3/api-docs
+
+      - name: ms-administracion
+        url: /api/administracion/v3/api-docs
+
+  enable-native-support: true
+
+  api-docs:
+    enabled: true
+
+
+gateway:
+  internal-secret: "ApoloRuben2026"
+
+
+jwt:
+  secret: MTBmYTYwYjI2YWQ0YzMxMDdjZGJhMGEyMzVmOGJlYzgwYmZhYzY3YzU4Zjc1OGZkN2NlNjMxMzFkOGJjYmI5MTQ2MzJkNTZhYzEyZmUxZmU2OGRkYzFkMDMzNzQxMzYzNGM2ODUyZjlhMTM0YzgyMTRiODNkMjAwYmE3MDc3MjM=
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eurekaserver:8761/eureka/
