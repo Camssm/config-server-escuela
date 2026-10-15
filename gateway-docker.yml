@@ -102,30 +102,26 @@ spring:
           filters:
             - AuthenticationFilter
 
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
     enabled: true
     operationsSorter: alpha
     tagsSorter: alpha
-
+    enable-native-support: true
     urls:
       - name: ms-security
         url: /auth/v3/api-docs
-
       - name: ms-alumnos
         url: /api/alumnos/v3/api-docs
-
       - name: ms-cursos
         url: /api/cursos/v3/api-docs
-
       - name: ms-administracion
         url: /api/administracion/v3/api-docs
-
-  enable-native-support: true
-
   api-docs:
     enabled: true
+
 
 
 gateway:
